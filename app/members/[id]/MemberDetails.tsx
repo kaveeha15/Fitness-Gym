@@ -6,15 +6,21 @@ import { FaChalkboardUser } from "react-icons/fa6";
 import { MdSportsGymnastics } from "react-icons/md";
 import { CgCalendarToday } from "react-icons/cg";
 import { FaSackDollar } from "react-icons/fa6";
-import { useState } from "react";
+import { use, useState } from "react";
 import Overview from "@/components/Overview";
 import Workouts from "@/components/Workouts";
 import Analytics from "@/components/Anaytics";
 import { userData } from "../data";
+import { useUserContextValue } from "@/hooks/useContextValues";
 import Link from "next/link";
+import { deleteUser } from '@/util/deleteUser'
+import EditUserModel from "@/components/EditUserModal";
 const MemberDetails = ({ id }) => {
-    const [type,setType]=useState('analytics');
-    const user= userData.find((item)=>(item.no==id))
+    const [type,setType]=useState('overview');
+    const [isEditOpen,setIsEditOpen]=useState(false)
+    const {users}=useUserContextValue()
+    console.log('users at memeberDetails',users)
+    const user= users.find((item)=>(item.no==id))
     const components={
         overview:<Overview user={user}/>,
         workouts:<Workouts/>,
@@ -25,6 +31,15 @@ const MemberDetails = ({ id }) => {
         const handleClick=(value)=>{
             setType(value)
         }
+
+        const handleDelete=()=>{
+        
+            deleteUser(user.id)
+        }
+        const handleEdit=()=>{
+            setIsEditOpen(true)
+        }
+        
     
     return (
         <div className="flex flex-col mx-5">
@@ -39,10 +54,10 @@ const MemberDetails = ({ id }) => {
                     </div>
                 </div>
                 <div className="flex gap-5  ">
-                    <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1 text-red-500"><RiDeleteBinFill color="red" /><p>Delate</p></div>
-                    <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1"><FaRegEdit /><p>Edit</p></div>
+                    <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1 text-red-500" onClick={handleDelete}><RiDeleteBinFill color="red" /><p>Delate</p></div>
+                    <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1" onClick={handleEdit}><FaRegEdit /><p>Edit</p></div>
                 </div>
-
+                    {isEditOpen&&<EditUserModel setter={setIsEditOpen}/>}
             </div>
             {/* cardsection */}
             <div className="memCard flex justify-between">

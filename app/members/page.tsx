@@ -6,13 +6,15 @@ import { useRouter } from "next/navigation";
 import { IoIosCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getUsers } from "@/util/getData";
-
+import { useUserContextValue } from "@/hooks/useContextValues";
 const Members = () => {
   getUsers()
     const router=useRouter();
     const handleClick=(id)=>{
         router.push(`/members/${id}`)
     }
+    const {isLoading,users,err}=useUserContextValue()
+    console.log('at member',users)
     return (
         <div className="flex flex-col">
             {/* heading */}
@@ -55,7 +57,10 @@ const Members = () => {
                 </div>
 
                 {/* Data Rows */}
-                {userData.map((user, index) => (
+                {
+                
+                users?
+                users.map((user, index) => (
                     <div key={index} className="flex items-center bg-gray-100 p-3 border-b" onClick={()=>{handleClick(user.no)}}>
 
 
@@ -85,7 +90,7 @@ const Members = () => {
 
 
                         <div className="flex  flex-1">
-                            <p>{user.date}</p>
+                        <p>{user.date.toDate().toLocaleDateString()}</p> 
                         </div>
 
 
@@ -94,7 +99,12 @@ const Members = () => {
                         </div>
 
                     </div>
-                ))}
+                )):<p className="text-black">Loading</p>
+                
+                
+                
+                
+                }
 
             </div>
         </div>

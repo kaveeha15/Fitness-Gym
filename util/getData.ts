@@ -10,4 +10,7 @@ const userList=qSnap.docs.map((doc)=>({
     ...doc.data()
 }))
 console.log('userList',userList)
+return userList
+
 }
+
