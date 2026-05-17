@@ -3,126 +3,97 @@ const EditUserModel = ({ setter, user }) => {
 
 
     return (
-        <div className="flex bg-gray-600 items-center justify-center fixed z-50 inset-0  ">
+        <div className="flex bg-gray-600/10 items-center justify-center fixed z-50 inset-0  ">
             <div className="  flex flex-col shadow-lg  bg-[#000000]/30 rounded-2xl max-w-4xl w-[90vw] h-[90vh] backdrop-blur-xl text-white p-4">
-
-                <div className="flex flex-col">
-                    <div className="flex mt-4 justify-between ">
-                        <p className="font-semibold text-3xl">Edit member Information</p> <IoClose size={30} onClick={() => setter(false)} />
+                {/* Heading */}
+                <div className="flex justify-between">
+                    <div className="flex flex-col ">
+                        <p className="font-semibold text-3xl">Edit member Information</p>
+                        <p className="text-1xl">Keep memeber details accurate and up to date</p>
                     </div>
-                    <p className="text-1xl">Keep memeber details accurate and up to date</p>
+                    <IoClose size={30} onClick={() => setter(false)} />
+                </div>
+                {/*User info section  */}
+                <div className="userInfoContainer flex justify-around bg-[#1e262e44]  mt-4 py-2 rounded-xl">
+                    <div className="flex-col">
+                        <p>User Name: {user.name}</p>
+                        <p>Age: {user.age}</p>
+                        <p>Email: {user.email}</p>
+                        <p>Contact Number: {user.pno}</p>
+                        <p>Membership Number: {user.no}</p>
+
+
+                    </div>
+                    <div className="flex-col">
+                        <p>Gender: {user.gender}</p>
+                        <p>Height(cm): {user.height}</p>
+                        <p>Weight(kg): {user.weight}</p>
+                        <p>Membership {user.membership}</p>
+                        <p>Status: {user.status ? 'Active' : 'Inactive'}</p>
+                    </div>
 
                 </div>
-                <div className="flex flex-col bg-gray-500/50 rounded-2xl w-210">
-
-                    <div className="flex  w-210">
-                        <div>
-                            <p>User Name:</p>
-                            <p>{user.name}</p>
+                {/* Input section */}
+                <div className="inputContainer flex gap-30">
+                    <div className="flex-col ">
+                        <div className="flex mt-4">
+                            <label htmlFor="un" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">User Name</label>
+                            <input type="text" id="un" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3" />
+                        </div>
+                        <div className="flex mt-4">
+                            <label htmlFor="age" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Age</label>
+                            <input type="text" id="age" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3" />
                         </div>
 
-                        <div><p>Age: </p>
-                            <p>{user.age}</p>
-
+                        <div className="flex mt-4">
+                            <label htmlFor="email" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">E-mail</label>
+                            <input type="text" id="email" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3" />
                         </div>
-                        <div>
-                            <p>Email:</p>
-                            <p>{user.email}</p>
+                        <div className="flex mt-4">
+                            <label htmlFor="num" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Contact Number</label>
+                            <input type="text" id="num" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3" />
                         </div>
-                        <div><p>Contact Number:</p>
-                            <p>{user.pno}</p>
-                        </div>
-                        <div>
-
-                            <p>Membership Number:</p>
-                            <p>{user.no}</p>
+                        <div className="flex mt-4">
+                            <label htmlFor="mem" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Membership Number</label>
+                            <input type="text" id="mem" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3" />
                         </div>
                     </div>
-                    <div className="flex w-210">
 
-                        <div>
-                            <p>Gender:</p>
-                            <p>{user.gender}</p>
-                        </div>
-
-                        <div>   <p>Height:</p>
-                            <p>{user.height}</p>
-
-                        </div>
-                        <div>
-                            <p>Weight:</p>
-                            <p>{user.weight}</p>
-                        </div>
-                        <div>    <p>Membership:</p>
-                            <p>{user.no}</p>
-                        </div>
-                        <div>
-
-                            <p>Status:</p>
-                            <p>{user.status ? 'Active' : 'Inactive'}</p>
+                    <div className="flex-col">
+                        <div className="flex mt-4">
+                            <label htmlFor="gen" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Gender</label>
+                             <select id="gender" className="bg-[#d8dde2e3] rounded-xl mx-[-20] w-48 px-3" >
+                                <option value='male'>Male</option>
+                                <option value='female'>Female</option>
+                            </select>
+                            </div>
+                        <div className="flex mt-4">
+                            <label htmlFor="hei" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Height(cm)</label>
+                            <input type="text" id="hei" className="bg-[#d8dde2e3] rounded-xl mx-[-20] w-48 px-3" />
                         </div>
 
-
-
-
-
-                    </div>
-                </div>
-                <div className="flex flex-col ">
-                    <div>
-                        <div className="flex flex-col flex-1">
-                            <label htmlFor="un" className="rounded-lg">User Name</label>
-                            <input id='un' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
+                        <div className="flex mt-4">
+                            <label htmlFor="wei" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Weight(kg)</label>
+                            <input type="text" id="wei" className="bg-[#d8dde2e3] rounded-xl mx-[-20] w-48 px-3" />
                         </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="age" className="rounded-lg">Age</label>
-                            <input id='age' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
+                        <div className="flex mt-4">
+                            <label htmlFor="mem" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Membership</label>
+                            <input type="text" id="mem" className="bg-[#d8dde2e3] rounded-xl mx-[-20] px-3 w-48" />
                         </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="email" className="rounded-lg">Email</label>
-                            <input id='email' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="pno" className="rounded-lg">Contact Number</label>
-                            <input id='pno' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="mno" className="rounded-lg">Membership Number</label>
-                            <input id='mno' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                    </div>
-                    <div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="gen" className="rounded-lg">Gender</label>
-                            <input id='gen' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="hei" className="rounded-lg">Height</label>
-                            <input id='hei' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="wei" className="rounded-lg">weight</label>
-                            <input id='wei' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="mem" className="rounded-lg">Membership</label>
-                            <input id='mem' type="text" className=" bg-gray-500 rounded-lg px-2 py-1" />
-                        </div>
-                         <div className="flex flex-col flex-1">
-                            <label htmlFor="status" className="rounded-lg">Status</label>
-                            <select  className=" bg-gray-500 rounded-lg px-2 py-1">
-                            <option value={'active'}>Active</option>
-                            <option value={'inactive'}>Inactive</option>
+                        <div className="flex mt-4">
+                            <label htmlFor="status" className="bg-[#2c2e3144] px-4 py-2 rounded-2xl w-50">Status</label>
+                            <select id="status" className="bg-[#d8dde2e3] rounded-xl mx-[-20] w-48 px-3" >
+                                <option value='active'>Active</option>
+                                <option value='inactive'>Inactive</option>
                             </select>
                         </div>
-                        <div>
-                            <div className="rounded-xl bg-gray-700 text-white"><p>Confirm</p></div>
-                            <div className="rounded-xl bg-red-600 text-white"><p>Cancel</p></div>
+                         <div className="flex mx-53 gap-2 mt-4">
+                            <div className="rounded-xl bg-gray-700 text-white px-3 py-2 cursor-pointer"><p>Confirm</p></div>
+                            <div className="rounded-xl bg-red-600 text-white px-3 py-2 cursor-pointer"><p>Cancel</p></div>
                         </div>
+
                     </div>
                 </div>
-
-
             </div>
         </div>
 

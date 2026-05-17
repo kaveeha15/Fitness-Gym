@@ -38,7 +38,7 @@ const MemberDetails = ({ id }) => {
         }
         const handleEdit=()=>{
             setIsEditOpen(true)
-        }
+         }
         
     
     return (
@@ -57,7 +57,7 @@ const MemberDetails = ({ id }) => {
                     <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1 text-red-500" onClick={handleDelete}><RiDeleteBinFill color="red" /><p>Delate</p></div>
                     <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1" onClick={handleEdit}><FaRegEdit /><p>Edit</p></div>
                 </div>
-                    {isEditOpen&&<EditUserModel setter={setIsEditOpen}/>}
+                     {isEditOpen&&<EditUserModel setter={setIsEditOpen} user={user}/>} 
             </div>
             {/* cardsection */}
             <div className="memCard flex justify-between">
