@@ -6,7 +6,7 @@ import { FaChalkboardUser } from "react-icons/fa6";
 import { MdSportsGymnastics } from "react-icons/md";
 import { CgCalendarToday } from "react-icons/cg";
 import { FaSackDollar } from "react-icons/fa6";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Overview from "@/components/Overview";
 import Workouts from "@/components/Workouts";
 import Analytics from "@/components/Anaytics";
@@ -18,9 +18,14 @@ import EditUserModel from "@/components/EditUserModal";
 const MemberDetails = ({ id }) => {
     const [type,setType]=useState('overview');
     const [isEditOpen,setIsEditOpen]=useState(false)
+    
     const {users}=useUserContextValue()
     console.log('users at memeberDetails',users)
-    const user= users.find((item)=>(item.no==id))
+    const findUser= users.find((item)=>(item.no==id))
+    const[user,setUser]=useState(findUser)
+    // useEffect(()=>{
+    //     setUser(findUser)
+    // },[])
     const components={
         overview:<Overview user={user}/>,
         workouts:<Workouts/>,
@@ -57,7 +62,7 @@ const MemberDetails = ({ id }) => {
                     <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1 text-red-500" onClick={handleDelete}><RiDeleteBinFill color="red" /><p>Delate</p></div>
                     <div className="btn flex items-center bg-gray-400 px-4 rounded-3xl w-30 justify-center gap-1" onClick={handleEdit}><FaRegEdit /><p>Edit</p></div>
                 </div>
-                     {isEditOpen&&<EditUserModel setter={setIsEditOpen} user={user}/>} 
+                     {isEditOpen&&<EditUserModel setter={setIsEditOpen} setUser={setUser} user={user}/>} 
             </div>
             {/* cardsection */}
             <div className="memCard flex justify-between">
@@ -102,7 +107,7 @@ const MemberDetails = ({ id }) => {
                 className={`${type==='analytics'?'bg-gray-500':''} px-2 rounded-2xl cursor-pointer`}><p>Analytics</p></div>
             </div>
             {
-                components[type]
+                user&&components[type]
             }
 
         </div>
